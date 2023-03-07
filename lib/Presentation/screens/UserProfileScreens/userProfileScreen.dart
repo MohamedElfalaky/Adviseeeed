@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../AuthenticationScreens/shared.dart';
+import '../../widgets/shared.dart';
 import 'widgets/userInfoCard.dart';
 import 'widgets/userInfoMenu.dart';
 

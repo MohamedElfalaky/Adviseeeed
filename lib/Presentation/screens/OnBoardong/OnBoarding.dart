@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/LoginScreen/loginscreen.dart';
 import 'package:nasooh/Presentation/screens/Home/HomeScreen.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/app/Style/Icons.dart';
@@ -35,12 +36,13 @@ class OnBoarding extends StatelessWidget {
           Scaffold(
               backgroundColor: Colors.transparent,
               body: Container(
-                  // height: MyApplication.hightClc(context, 700),  معدتش هتحتاجها الكونتينر بقى لعمل مارجن ف الاول بس لتخطيط الصفحة
+                  height: MyApplication.hightClc(context, 812),
+                  // معدتش هتحتاجها الكونتينر بقى لعمل مارجن ف الاول بس لتخطيط الصفحة
                   margin:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                  child: ListView(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                  child: Column(
+                    // shrinkWrap: true,
+                    // physics: NeverScrollableScrollPhysics(),
                     children: [
                       SizedBox(
                         height: 80,
@@ -51,21 +53,12 @@ class OnBoarding extends StatelessWidget {
                       SizedBox(
                         height: 34,
                       ),
-                      SizedBox(height: 150, child: Image.asset(onBoardingPNG)),
                       SizedBox(
-                        height: 30,
-                        child: Stack(
-                          alignment: AlignmentDirectional.center,
-                          children: [
-                            Align(
-                                alignment: Alignment(0, -5.5),
-                                child: SvgPicture.asset(curve1)),
-                            Align(
-                                alignment: Alignment(0, -3.3),
-                                child: SvgPicture.asset(curve2)),
-                          ],
-                        ),
-                      ),
+                          height: 150,
+                          child: SvgPicture.asset(
+                            onBoardingg,
+                            color: Colors.amber,
+                          )),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 25),
                         child: Text(
@@ -90,13 +83,16 @@ class OnBoarding extends StatelessWidget {
                       SizedBox(
                         height: 70,
                       ),
-                      MyButton(
-                        txt: "ابدأ الآن",
-                        isBold: true,
-                        onPressedHandler: () {
-                          MyApplication.navigateToReplace(
-                              context, HomeScreen());
-                        },
+                      SizedBox(
+                        height: 48,
+                        child: MyButton(
+                          txt: "ابدأ الآن",
+                          isBold: true,
+                          onPressedHandler: () {
+                            MyApplication.navigateToReplace(
+                                context, LoginScreen());
+                          },
+                        ),
                       )
                     ],
                   ))),

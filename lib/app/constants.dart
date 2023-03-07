@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 
 /// vars with fixed values
 class Constants {
@@ -89,8 +90,12 @@ class Constants {
       Color? fillColor,
       String? hintText}) {
     return InputDecoration(
+        errorStyle: Constants.subtitleFont1.copyWith(
+          color: Colors.red,
+        ),
         prefixIcon: Padding(
-          padding: const EdgeInsets.all(4),
+          padding: const EdgeInsetsDirectional.only(
+              start: 12, end: 6, top: 10, bottom: 10),
           child: prefixIcon,
         ),
         prefixIconColor: prefixColor,
@@ -99,14 +104,15 @@ class Constants {
           padding: const EdgeInsets.all(4),
           child: suffixIcon,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         border: const OutlineInputBorder(
           gapPadding: 0,
           borderSide: BorderSide(
             color: Color(0xff808488),
           ),
           borderRadius: BorderRadius.all(
-            Radius.circular(8),
+            Radius.circular(20),
           ),
         ),
         hintText: hintText,
@@ -121,4 +127,27 @@ class Constants {
 
   /// integers
 
+  static final defaultPinTheme = PinTheme(
+    width: 70,
+    height: 70,
+    textStyle: TextStyle(
+        fontSize: 20,
+        color: Color.fromRGBO(30, 60, 87, 1),
+        fontWeight: FontWeight.w600),
+    decoration: BoxDecoration(
+      border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
+
+  static final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+    border: Border.all(color: Color(0xFF0085A5)),
+    borderRadius: BorderRadius.circular(20),
+  );
+
+  static final submittedPinTheme = defaultPinTheme.copyWith(
+    decoration: defaultPinTheme.decoration!.copyWith(
+      color: Color.fromRGBO(234, 239, 243, 1),
+    ),
+  );
 }

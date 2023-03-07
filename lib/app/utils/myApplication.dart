@@ -8,6 +8,14 @@ import 'package:nasooh/app/utils/sharedPreferenceClass.dart';
 import '../constants.dart';
 
 class MyApplication {
+  static double hightClc(BuildContext context, int myHeight) {
+    return MediaQuery.of(context).size.height * myHeight / 812;
+  }
+
+  static double widthClc(BuildContext context, int myWidth) {
+    return MediaQuery.of(context).size.width * myWidth / 375;
+  }
+
   static Future<bool> checkConnection() async {
     var connectivityResult;
 

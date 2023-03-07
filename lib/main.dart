@@ -5,15 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:nasooh/Data/cubit/authentication/login_cubit/login_cubit.dart';
-import 'package:nasooh/Presentation/screens/Home/Home.dart';
-import 'package:nasooh/Presentation/screens/Home/HomeScreen.dart';
+
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage1/RegistrationStage1.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage2/RegistrationStage2.dart';
+import 'package:nasooh/app/constants.dart';
+
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
 
-import 'Presentation/screens/UserProfileScreens/userProfileScreen.dart';
 import 'app/global.dart';
 import 'app/keys.dart';
-import 'app/utils/BlocProviders.dart';
 import 'app/utils/lang/demo_localization.dart';
 import 'app/utils/lang/language_constants.dart';
 import 'app/utils/sharedPreferenceClass.dart';
@@ -130,11 +131,18 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: getMaterialColor(
-              colorHex:
-                  0xFF0085A5), // todo change color to use default app color
-        ),
-        home: Home(),
+            primarySwatch: getMaterialColor(
+                colorHex:
+                    0xFF0085A5), // todo change color to use default app color
+            appBarTheme: AppBarTheme().copyWith(
+              toolbarHeight: 70,
+              titleSpacing: 4,
+              color: Constants.whiteAppColor,
+              elevation: 0,
+              titleTextStyle: Constants.mainTitleFont,
+            ),
+            scaffoldBackgroundColor: Constants.whiteAppColor),
+        home: RegistrationStage2(),
       ),
     );
   }
@@ -240,15 +248,12 @@ class _MyAppState extends State<MyApp> {
 //         'lang': "en"
 //       };
 //       selectedLang = "en";
-
 //        MyApp.setLocale(context, newLocale);
-
 //     });
-
 //         }
 // // }
 
 Future<void> initialization(BuildContext? context) async {
-  await Future.delayed(const Duration(seconds: 3));
+  await Future.delayed(const Duration(seconds: 1));
   FlutterNativeSplash.remove();
 }

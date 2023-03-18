@@ -24,11 +24,13 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+            centerTitle: false,
             leadingWidth: 70,
             title: const Text("المعلومات الشخصية"),
             leading: const myBackButton()),
         body: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MyApplication.hightClc(context, 812),
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(
             top: 16,
             right: 16,
@@ -40,7 +42,6 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-            
                   Lottie.asset(otpLotti, height: 160),
                   const Text(
                     "رمز التحقق من الجوال",
@@ -55,7 +56,6 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
                     "+9664537298364",
                     style: Constants.secondaryTitleRegularFont,
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(
                         top: MyApplication.hightClc(context, 30),
@@ -88,7 +88,6 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
                     "سيتم اعادة ارسال الكود بعد 1:00",
                     style: Constants.subtitleRegularFont,
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(
                         top: MyApplication.hightClc(context, 40)),

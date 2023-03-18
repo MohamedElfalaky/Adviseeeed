@@ -55,6 +55,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   pinput: ^2.2.21
   email_validator: ^2.1.16
+  image_picker: ^0.8.7
 
 dev_dependencies:
   flutter_test:
@@ -65,11 +66,12 @@ flutter_native_splash:
   # color: "#0085A5"
   image: assets/images/PNG/NasohSplash.png
   background_image: assets/images/PNG/SplashScreenBackGround.png
-  # android: true
-  # ios: true
-  # android_12:
-  #   color: "#0085A5"
-  #   image: "assets/download.png"
+  android: true
+  ios: true
+  android_12:
+    color: "#0085A5"
+    image: assets/images/PNG/NasohSplash.png
+    background_image: assets/images/PNG/SplashScreenBackGround.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

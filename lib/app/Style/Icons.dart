@@ -16,6 +16,20 @@ const String soNew = "assets/images/SVGs/soNew.svg";
 const String backgroundddd = "assets/images/SVGs/3.svg";
 const String logotrans = "assets/images/SVGs/LogoTrans.svg";
 const String logoColor = "assets/images/SVGs/logoColor.svg";
+const String nameIcon = "assets/images/SVGs/nameIcon.svg";
+const String linkIcon = "assets/images/SVGs/linkIcon.svg";
+const String mailLink = "assets/images/SVGs/mailLink.svg";
+const String wasfIcon = "assets/images/SVGs/wasfIcon.svg";
+const String nabzaIcon = "assets/images/SVGs/nabzaIcon.svg";
+const String khebraIcon = "assets/images/SVGs/khebraIcon.svg";
+const String certIcon = "assets/images/SVGs/certIcon.svg";
+const String certIcaddCertIconon = "assets/images/SVGs/addCertIcon.svg";
+const String selectedSectors = "assets/images/SVGs/selectedSectors.svg";
+const String searchIcon = "assets/images/SVGs/searchIcon.svg";
+const String ipanIcon = "assets/images/SVGs/ipanIcon.svg";
+const String ipanIcon2 = "assets/images/SVGs/ipanIcon2.svg";
+const String ekrar = "assets/images/SVGs/ekrar.svg";
+const String dateIcon = "assets/images/SVGs/dateIcon.svg";
 
 ///////////////////// Jsons////////
 const String otpLotti = "assets/images/Jsons/4.json";

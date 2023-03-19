@@ -1,11 +1,11 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
 import '../../../../../app/constants.dart';
 import '../../../../../app/utils/myApplication.dart';
-import 'package:pinput/pinput.dart';
-import 'package:lottie/lottie.dart';
 
 class RegistrationStage3 extends StatefulWidget {
   const RegistrationStage3({Key? key}) : super(key: key);
@@ -23,14 +23,42 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 48,
+                child: MyButton(
+                  isBold: true,
+                  txt: "التالي",
+                  onPressedHandler: () {},
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  top: 8,
+                ),
+                child: Text(
+                  "خطوة 3 من 7",
+                  style: Constants.subtitleRegularFont,
+                ),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
             centerTitle: false,
             leadingWidth: 70,
             title: const Text("المعلومات الشخصية"),
             leading: const myBackButton()),
         body: Container(
-          height: MyApplication.hightClc(context, 812),
-          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
           padding: EdgeInsets.only(
             top: 16,
             right: 16,
@@ -40,63 +68,103 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
           child: SingleChildScrollView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Lottie.asset(otpLotti, height: 160),
-                  const Text(
-                    "رمز التحقق من الجوال",
-                    style:
-                        TextStyle(fontFamily: Constants.mainFont, fontSize: 24),
-                  ),
-                  const Text(
-                    "تم إرسال رمز التحقق إلى رقم جوالك",
-                    style: Constants.subtitleFont1,
-                  ),
-                  const Text(
-                    "+9664537298364",
-                    style: Constants.secondaryTitleRegularFont,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: MyApplication.hightClc(context, 30),
-                        bottom: MyApplication.hightClc(context, 32)),
-                    child: Pinput(
-                      defaultPinTheme: Constants.defaultPinTheme,
-                      focusedPinTheme: Constants.focusedPinTheme,
-                      onCompleted: (pin) => print(pin),
+                  Center(
+                    child: SizedBox(
+                      height: 190,
+                      width: 190,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Center(
+                            child: DottedBorder(
+                              color: Constants.outLineColor,
+                              borderType: BorderType.RRect,
+                              radius: const Radius.circular(20),
+                              dashPattern: [10, 6],
+                              child: Padding(
+                                padding: const EdgeInsets.all(6),
+                                child: Container(
+                                    height: 160,
+                                    width: 160,
+                                    decoration: BoxDecoration(
+                                        color: const Color(0XFFF8F8F9),
+                                        borderRadius:
+                                            BorderRadius.circular(16)),
+                                    child: SvgPicture.asset(
+                                      logotrans,
+                                      color: Colors.transparent.withOpacity(.2),
+                                    )),
+                              ),
+                            ),
+                          ),
+                          const Align(
+                            alignment: Alignment.bottomRight,
+                            child: CircleAvatar(
+                              backgroundColor: Color(0XFF444444),
+                              radius: 20,
+                              child: Icon(
+                                Icons.camera_alt_outlined,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 48,
-                    child: MyButton(
-                      isBold: true,
-                      txt: "التالي",
-                      onPressedHandler: () {},
+                  Padding(
+                    padding: const EdgeInsets.only(top: 34, bottom: 24),
+                    child: TextFormField(
+                      decoration: Constants.setRegistrationTextInputDecoration(
+                          hintText:
+                              "الاسم ثلاثي باللغة العربية ..سيظهر للمستخدمين",
+                          prefixIcon: SvgPicture.asset(
+                            nameIcon,
+                            height: 24,
+                          )),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: MyApplication.hightClc(context, 24),
-                        bottom: MyApplication.hightClc(context, 50)),
+                  TextFormField(
+                    decoration: Constants.setRegistrationTextInputDecoration(
+                        hintText: "اسم المستخدم باللغة الإنجليزية...",
+                        prefixIcon: SvgPicture.asset(
+                          linkIcon,
+                          height: 24,
+                        )),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 8),
                     child: Text(
-                      "خطوة 2 من 7",
-                      style: Constants.subtitleRegularFont,
+                      "سيستخدم في رابط صفحتك الشخصية: nasooh.app/ahmed",
+                      style: TextStyle(
+                          fontFamily: Constants.mainFont,
+                          color: Color(0XFF1ABC9C),
+                          fontSize: 12),
                     ),
                   ),
-                  const Text(
-                    "سيتم اعادة ارسال الكود بعد 1:00",
-                    style: Constants.subtitleRegularFont,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 24),
+                    child: TextFormField(
+                      decoration: Constants.setRegistrationTextInputDecoration(
+                          hintText: "البريد الإلكتروني...",
+                          prefixIcon: SvgPicture.asset(
+                            mailLink,
+                            height: 24,
+                          )),
+                    ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                        top: MyApplication.hightClc(context, 40)),
-                    child: const Text("لم تستلم الرمز حتى الآن",
-                        style: Constants.subtitleFont1),
-                  ),
-                  const Text(
-                    "إعادة إرسال",
-                    style: Constants.mainTitleFont,
+                    padding: const EdgeInsets.only(bottom: 24),
+                    child: TextFormField(
+                      decoration: Constants.setRegistrationTextInputDecoration(
+                          hintText: "كلمة المرور...",
+                          prefixIcon: SvgPicture.asset(
+                            passField,
+                            height: 24,
+                          )),
+                    ),
                   ),
                 ],
               )),

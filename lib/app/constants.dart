@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
 
 /// vars with fixed values
@@ -13,6 +16,7 @@ class Constants {
   static const Color fontWarningColor = Color(0xFFFFAB00);
   static const Color secondaryFontColor = Color(0xFF444444);
   static const Color prefixContainerColor = Color(0xFFEEEEEE);
+  static const Color outLineColor = Color(0xFFBDBDBD);
 
   static const Color whiteAppColor = Color(0xFFFFFFFF);
 
@@ -113,6 +117,81 @@ class Constants {
           ),
           borderRadius: BorderRadius.all(
             Radius.circular(20),
+          ),
+        ),
+        hintText: hintText,
+        hintStyle: const TextStyle(
+          fontFamily: mainFont,
+          fontSize: 12,
+          color: fontHintColor,
+        ));
+  }
+
+// TextFieldInputs
+  static setRegistrationTextInputDecoration(
+      {Widget? prefixIcon,
+      Widget? suffixIcon,
+      Color? prefixColor,
+      Color? suffixColor,
+      Color? borderColor,
+      Color? fillColor,
+      bool? isParagraph,
+      String? hintText}) {
+    return InputDecoration(
+        errorStyle: Constants.subtitleFont1.copyWith(
+          color: Colors.red,
+        ),
+        prefixIcon: isParagraph == true
+            ? SizedBox(
+                height: 140,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                          start: 12, end: 6, top: 10, bottom: 10),
+                      child: Container(
+                        width: 30,
+                        decoration: const BoxDecoration(
+                            border: Border(
+                                left: BorderSide(
+                                    width: 1, color: Color(0xFFBDBDBD)))),
+                        margin: const EdgeInsetsDirectional.only(end: 8),
+                        padding: const EdgeInsetsDirectional.only(end: 8),
+                        child: prefixIcon,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsetsDirectional.only(
+                    start: 12, end: 6, top: 10, bottom: 10),
+                child: Container(
+                  width: 30,
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          left:
+                              BorderSide(width: 1, color: Color(0xFFBDBDBD)))),
+                  margin: const EdgeInsetsDirectional.only(end: 8),
+                  padding: const EdgeInsetsDirectional.only(end: 8),
+                  child: prefixIcon,
+                ),
+              ),
+        prefixIconColor: prefixColor,
+        suffixIconColor: suffixColor,
+        suffixIcon: Padding(
+          padding: const EdgeInsets.all(4),
+          child: suffixIcon,
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        border: const OutlineInputBorder(
+          gapPadding: 0,
+          borderSide: BorderSide(
+            color: Color(0xff808488),
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(24),
           ),
         ),
         hintText: hintText,

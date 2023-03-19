@@ -42,7 +42,7 @@ class MyButton extends StatelessWidget {
                     fontWeight:
                         isBold == true ? FontWeight.bold : FontWeight.normal,
                     fontFamily: Constants.mainFont,
-                    fontSize: txtSize ?? 14,
+                    fontSize: txtSize ?? 16,
                     color: txtColor ?? Constants.whiteAppColor),
               ),
             ),

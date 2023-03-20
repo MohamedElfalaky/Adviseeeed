@@ -26,8 +26,8 @@ class _RegistrationStage1State extends State<RegistrationStage1> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
             leadingWidth: 70,
-            title: Text("إنشاء حساب ناصح"),
-            leading: myBackButton()),
+            title: const Text("إنشاء حساب ناصح"),
+            leading: const myBackButton()),
         body: Container(
           height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.only(
@@ -45,7 +45,7 @@ class _RegistrationStage1State extends State<RegistrationStage1> {
                     padding: EdgeInsets.only(
                         bottom: MyApplication.hightClc(context, 88),
                         top: MyApplication.hightClc(context, 74)),
-                    child: Center(
+                    child: const Center(
                         child: Text(
                       "إنشاء حساب جديد",
                       style: TextStyle(
@@ -77,7 +77,7 @@ class _RegistrationStage1State extends State<RegistrationStage1> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           gapPadding: 0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Color(0xff808488),
                           ),
                         ),
@@ -99,26 +99,26 @@ class _RegistrationStage1State extends State<RegistrationStage1> {
                       onPressedHandler: () {},
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(top: 24, bottom: 40),
                     child: Text(
                       "خطوة 1 من 7",
                       style: Constants.subtitleFont,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "بالاستمرار أنت توافق على",
                     style: Constants.secondaryTitleRegularFont,
                   ),
-                  Text("سياسة الخصوصية والاستخدام",
+                  const Text("سياسة الخصوصية والاستخدام",
                       style: Constants.mainTitleFont),
                   Padding(
                     padding: EdgeInsets.only(
                         top: MyApplication.hightClc(context, 110)),
-                    child: Text("لديك حساب بالفعل",
+                    child: const Text("لديك حساب بالفعل",
                         style: Constants.subtitleFont1),
                   ),
-                  Text(
+                  const Text(
                     "تسجيل دخول",
                     style: Constants.secondaryTitleFont,
                   ),

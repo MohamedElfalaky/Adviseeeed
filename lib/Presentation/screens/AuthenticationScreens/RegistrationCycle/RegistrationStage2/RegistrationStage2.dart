@@ -89,6 +89,7 @@ class _RegistrationStage2State extends State<RegistrationStage2> {
                     padding: EdgeInsets.only(
                         top: MyApplication.hightClc(context, 24),
                         bottom: MyApplication.hightClc(context, 50)),
+                    // ignore: prefer_const_constructors
                     child: Text(
                       "خطوة 2 من 7",
                       style: Constants.subtitleRegularFont,

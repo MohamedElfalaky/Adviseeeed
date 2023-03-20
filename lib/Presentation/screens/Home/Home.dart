@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:nasooh/Presentation/screens/AuthenticationScreens/LoginScreen/loginscreen.dart';
 import 'package:nasooh/Presentation/screens/Home/HomeScreen.dart';
 import 'package:nasooh/Presentation/screens/OnBoardong/OnBoarding.dart';
-import 'package:nasooh/app/Style/Icons.dart';
 import 'package:nasooh/app/constants.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -28,7 +26,7 @@ class _HomeState extends State<Home> {
       backgroundColor: Constants.whiteAppColor,
       body: IndexedStack(index: currentIndex, children: screens),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(30), topLeft: Radius.circular(30)),
           boxShadow: [
@@ -36,14 +34,15 @@ class _HomeState extends State<Home> {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30.0),
             topRight: Radius.circular(30.0),
           ),
           child: BottomNavigationBar(
             // backgroundColor: Colors.red,
-            selectedLabelStyle: TextStyle(fontFamily: Constants.mainFont),
-            unselectedLabelStyle: TextStyle(fontFamily: Constants.mainFont),
+            selectedLabelStyle: const TextStyle(fontFamily: Constants.mainFont),
+            unselectedLabelStyle:
+                const TextStyle(fontFamily: Constants.mainFont),
             type: BottomNavigationBarType.fixed,
             // backgroundColor: Theme.of(context).colorScheme.secondary,
             currentIndex: currentIndex,

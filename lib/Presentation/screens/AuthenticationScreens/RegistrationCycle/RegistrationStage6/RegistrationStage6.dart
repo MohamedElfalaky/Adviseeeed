@@ -114,21 +114,21 @@ class _RegistrationStage6State extends State<RegistrationStage6> {
                   Row(
                     children: [
                       SvgPicture.asset(ekrar),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
-                      Text(
+                      const Text(
                         "إقرار باالسياسة والعمولة",
                         style: Constants.mainTitleFont,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                           height: 24,
                           width: 24,
                           child: Checkbox(value: false, onChanged: (d) {}))
                     ],
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16),
                     child: Text(
                       "هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحةما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.",
@@ -146,7 +146,7 @@ class _RegistrationStage6State extends State<RegistrationStage6> {
                           )),
                     ),
                   ),
-                  Text(
+                  const Text(
                     "الجنس",
                     style: Constants.secondaryTitleFont,
                   ),
@@ -155,8 +155,8 @@ class _RegistrationStage6State extends State<RegistrationStage6> {
                       SizedBox(
                         width: 120,
                         child: RadioListTile(
-                            contentPadding: EdgeInsets.all(0),
-                            title: Text(
+                            contentPadding: const EdgeInsets.all(0),
+                            title: const Text(
                               "ذكر",
                               style: Constants.secondaryTitleRegularFont,
                             ),
@@ -167,8 +167,8 @@ class _RegistrationStage6State extends State<RegistrationStage6> {
                       SizedBox(
                         width: 120,
                         child: RadioListTile(
-                            contentPadding: EdgeInsets.all(0),
-                            title: Text(
+                            contentPadding: const EdgeInsets.all(0),
+                            title: const Text(
                               "أنثى",
                               style: Constants.secondaryTitleRegularFont,
                             ),

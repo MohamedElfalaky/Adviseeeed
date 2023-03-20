@@ -82,7 +82,7 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
                               color: Constants.outLineColor,
                               borderType: BorderType.RRect,
                               radius: const Radius.circular(20),
-                              dashPattern: [10, 6],
+                              dashPattern: const [10, 6],
                               child: Padding(
                                 padding: const EdgeInsets.all(6),
                                 child: Container(

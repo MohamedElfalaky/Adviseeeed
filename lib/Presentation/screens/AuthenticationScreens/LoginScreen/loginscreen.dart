@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
           //   ),
           // ),
           Scaffold(
-            backgroundColor: Color.fromARGB(0, 168, 46, 46),
+            backgroundColor: const Color.fromARGB(0, 168, 46, 46),
             resizeToAvoidBottomInset: false,
             body: Container(
               height: MediaQuery.of(context).size.height,
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      Center(
+                      const Center(
                         child: Text(
                           "تسجيل الدخول",
                           style: Constants.headerNavigationFont,
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               gapPadding: 0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0xff808488),
                               ),
                             ),
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ))),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 30),
+                        padding: const EdgeInsets.only(bottom: 30),
                         child: Row(
                           children: [
                             SizedBox(
@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onChanged: (value) {},
                               ),
                             ),
-                            Text(
+                            const Text(
                               "تذكر معلوماتي",
                               style: Constants.secondaryTitleRegularFont,
                             )
@@ -181,15 +181,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             textAlign: TextAlign.center,
                             style: Constants.mainTitleFont),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 80,
                       ),
-                      SizedBox(
+                      const SizedBox(
                           width: double.infinity,
                           child: Text("ماعندك حساب؟",
                               textAlign: TextAlign.center,
                               style: Constants.subtitleFont1)),
-                      SizedBox(
+                      const SizedBox(
                         width: double.infinity,
                         child: Text(
                           "سجل معنا",

@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
 
 /// vars with fixed values
@@ -209,24 +206,24 @@ class Constants {
   static final defaultPinTheme = PinTheme(
     width: 70,
     height: 70,
-    textStyle: TextStyle(
+    textStyle: const TextStyle(
         fontSize: 20,
         color: Color.fromRGBO(30, 60, 87, 1),
         fontWeight: FontWeight.w600),
     decoration: BoxDecoration(
-      border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+      border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
       borderRadius: BorderRadius.circular(20),
     ),
   );
 
   static final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-    border: Border.all(color: Color(0xFF0085A5)),
+    border: Border.all(color: const Color(0xFF0085A5)),
     borderRadius: BorderRadius.circular(20),
   );
 
   static final submittedPinTheme = defaultPinTheme.copyWith(
     decoration: defaultPinTheme.decoration!.copyWith(
-      color: Color.fromRGBO(234, 239, 243, 1),
+      color: const Color.fromRGBO(234, 239, 243, 1),
     ),
   );
 }

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nasooh/Presentation/screens/AuthenticationScreens/LoginScreen/loginscreen.dart';
-import 'package:nasooh/Presentation/screens/Home/HomeScreen.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/app/Style/Icons.dart';
 import 'package:nasooh/app/constants.dart';
 import 'package:nasooh/app/utils/lang/language_constants.dart';
 import 'package:nasooh/app/utils/myApplication.dart';
-
-import '../../../app/global.dart';
 
 class OnBoarding extends StatelessWidget {
   OnBoarding();
@@ -44,13 +41,13 @@ class OnBoarding extends StatelessWidget {
                     // shrinkWrap: true,
                     // physics: NeverScrollableScrollPhysics(),
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 80,
                       ),
                       Center(
                         child: SvgPicture.asset(logoo),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 34,
                       ),
                       SizedBox(
@@ -60,7 +57,7 @@ class OnBoarding extends StatelessWidget {
                             color: Colors.amber,
                           )),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 25),
+                        margin: const EdgeInsets.symmetric(horizontal: 25),
                         child: Text(
                           getTranslated(context,
                               "تبغى نصيحة ممتازة من شخص فاهم بمجاله بسعر أنت تحدده ويرد عليك بسرعة؟")!,
@@ -68,11 +65,11 @@ class OnBoarding extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 25),
+                        margin: const EdgeInsets.symmetric(horizontal: 25),
                         child: Text(
                           getTranslated(context,
                               "تطبيق نصوح يساعدك في الحصول على إجابة وافية لكل سؤال")!,
@@ -80,7 +77,7 @@ class OnBoarding extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 70,
                       ),
                       SizedBox(
@@ -90,7 +87,7 @@ class OnBoarding extends StatelessWidget {
                           isBold: true,
                           onPressedHandler: () {
                             MyApplication.navigateToReplace(
-                                context, LoginScreen());
+                                context, const LoginScreen());
                           },
                         ),
                       )

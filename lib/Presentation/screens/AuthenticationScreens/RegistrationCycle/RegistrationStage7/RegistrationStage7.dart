@@ -24,52 +24,6 @@ class _RegistrationStage7State extends State<RegistrationStage7> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: Row(
-                  children: [
-                    Flexible(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.only(end: 8.0),
-                        child: MyButton(
-                          isBold: true,
-                          txt: "إتمام التسجيل",
-                          onPressedHandler: () {},
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: MyButtonOutlined(
-                        isBold: false,
-                        txt: "تخطي",
-                        onPressedHandler: () {},
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(
-                  top: 8,
-                ),
-                child: Text(
-                  "خطوة 7 من 7",
-                  style: Constants.subtitleRegularFont,
-                ),
-              ),
-            ],
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
           centerTitle: false,
           leadingWidth: 70,
@@ -85,97 +39,234 @@ class _RegistrationStage7State extends State<RegistrationStage7> {
             left: 16,
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 24),
-                    child: DropDownTextField(
-                      searchDecoration: InputDecoration(
-                          hintText: "ابحث هنا...",
-                          hintStyle: TextStyle(
-                            fontFamily: Constants.mainFont,
-                            fontSize: 14,
-                            color: Constants.fontHintColor,
-                          )),
-                      listTextStyle: Constants.secondaryTitleRegularFont,
-                      textStyle: Constants.secondaryTitleRegularFont,
-                      enableSearch: true,
-                      initialValue: "خالد",
-                      dropDownList: [
-                        DropDownValueModel(name: "محمد", value: "سعودي"),
-                        DropDownValueModel(name: "احمد", value: "سعودي"),
-                        DropDownValueModel(name: "خالد", value: "سعودي"),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: DropDownTextField(
+                            searchDecoration: const InputDecoration(
+                                hintText: "ابحث هنا...",
+                                hintStyle: TextStyle(
+                                  fontFamily: Constants.mainFont,
+                                  fontSize: 14,
+                                  color: Constants.fontHintColor,
+                                )),
+                            listTextStyle: Constants.secondaryTitleRegularFont,
+                            textStyle: Constants.secondaryTitleRegularFont,
+                            enableSearch: true,
+                            // initialValue: "خالد",
+                            dropDownList: const [
+                              DropDownValueModel(
+                                  name: "السعودية", value: "سعودي"),
+                              DropDownValueModel(name: "مصر", value: "سعودي"),
+                              DropDownValueModel(
+                                  name: "البحرين", value: "سعودي"),
+                            ],
+                            textFieldDecoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "بلد الإقامة...",
+                                    prefixIcon: SvgPicture.asset(
+                                      countryIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: DropDownTextField(
+                            searchDecoration: const InputDecoration(
+                                hintText: "ابحث هنا...",
+                                hintStyle: TextStyle(
+                                  fontFamily: Constants.mainFont,
+                                  fontSize: 14,
+                                  color: Constants.fontHintColor,
+                                )),
+                            listTextStyle: Constants.secondaryTitleRegularFont,
+                            textStyle: Constants.secondaryTitleRegularFont,
+                            enableSearch: true,
+                            // initialValue: "خالد",
+                            dropDownList: const [
+                              DropDownValueModel(
+                                  name: "القاهرة", value: "سعودي"),
+                              DropDownValueModel(
+                                  name: "الرياض", value: "سعودي"),
+                              DropDownValueModel(
+                                  name: "المدينة المنورة", value: "سعودي"),
+                            ],
+                            textFieldDecoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "مدينة الإقامة...",
+                                    prefixIcon: SvgPicture.asset(
+                                      cityIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: DropDownTextField(
+                            searchDecoration: const InputDecoration(
+                                hintText: "ابحث هنا...",
+                                hintStyle: TextStyle(
+                                  fontFamily: Constants.mainFont,
+                                  fontSize: 14,
+                                  color: Constants.fontHintColor,
+                                )),
+                            listTextStyle: Constants.secondaryTitleRegularFont,
+                            textStyle: Constants.secondaryTitleRegularFont,
+                            enableSearch: true,
+                            // initialValue: "خالد",
+                            dropDownList: const [
+                              DropDownValueModel(name: "مصري", value: "سعودي"),
+                              DropDownValueModel(name: "سعودي", value: "سعودي"),
+                              DropDownValueModel(name: "سوري", value: "سعودي"),
+                            ],
+                            textFieldDecoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "الجنسية...",
+                                    prefixIcon: SvgPicture.asset(
+                                      nationalityIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 16),
+                          child: Text(
+                            "حساباتك على وسائل التواصل الاجتماعي",
+                            style: Constants.mainTitleFont,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: TextFormField(
+                            decoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "ادخل رابط تويتر...",
+                                    prefixIcon: SvgPicture.asset(
+                                      twitterIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: TextFormField(
+                            decoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "ادخل رابط لينكدان...",
+                                    prefixIcon: SvgPicture.asset(
+                                      linkedinIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: TextFormField(
+                            decoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "ادخل رابط سناب شات...",
+                                    prefixIcon: SvgPicture.asset(
+                                      snapIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: TextFormField(
+                            decoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "ادخل رابط انستقرام...",
+                                    prefixIcon: SvgPicture.asset(
+                                      instaIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: TextFormField(
+                            decoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "ادخل رابط فيس بوك...",
+                                    prefixIcon: SvgPicture.asset(
+                                      faceBookIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: TextFormField(
+                            decoration:
+                                Constants.setRegistrationTextInputDecoration(
+                                    hintText: "ادخل رابط يوتيوب...",
+                                    prefixIcon: SvgPicture.asset(
+                                      youtubeIcon,
+                                      height: 24,
+                                    )),
+                          ),
+                        ),
                       ],
-                      textFieldDecoration:
-                          Constants.setRegistrationTextInputDecoration(
-                              hintText: "بلد الإقامة...",
-                              prefixIcon: SvgPicture.asset(
-                                ipanIcon,
-                                height: 24,
-                              )),
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: Row(
+                        children: [
+                          Flexible(
+                            flex: 2,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsetsDirectional.only(end: 8.0),
+                              child: MyButton(
+                                isBold: true,
+                                txt: "إتمام التسجيل",
+                                onPressedHandler: () {},
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            flex: 1,
+                            child: MyButtonOutlined(
+                              isBold: false,
+                              txt: "تخطي",
+                              onPressedHandler: () {},
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 24),
-                    child: DropDownTextField(
-                      searchDecoration: InputDecoration(
-                          hintText: "ابحث هنا...",
-                          hintStyle: TextStyle(
-                            fontFamily: Constants.mainFont,
-                            fontSize: 14,
-                            color: Constants.fontHintColor,
-                          )),
-                      listTextStyle: Constants.secondaryTitleRegularFont,
-                      textStyle: Constants.secondaryTitleRegularFont,
-                      enableSearch: true,
-                      initialValue: "خالد",
-                      dropDownList: [
-                        DropDownValueModel(name: "محمد", value: "سعودي"),
-                        DropDownValueModel(name: "احمد", value: "سعودي"),
-                        DropDownValueModel(name: "خالد", value: "سعودي"),
-                      ],
-                      textFieldDecoration:
-                          Constants.setRegistrationTextInputDecoration(
-                              hintText: "مدينة الإقامة...",
-                              prefixIcon: SvgPicture.asset(
-                                ipanIcon,
-                                height: 24,
-                              )),
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        top: 8,
+                      ),
+                      child: Text(
+                        "خطوة 7 من 7",
+                        style: Constants.subtitleRegularFont,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 24),
-                    child: DropDownTextField(
-                      searchDecoration: InputDecoration(
-                          hintText: "ابحث هنا...",
-                          hintStyle: TextStyle(
-                            fontFamily: Constants.mainFont,
-                            fontSize: 14,
-                            color: Constants.fontHintColor,
-                          )),
-                      listTextStyle: Constants.secondaryTitleRegularFont,
-                      textStyle: Constants.secondaryTitleRegularFont,
-                      enableSearch: true,
-                      initialValue: "خالد",
-                      dropDownList: [
-                        DropDownValueModel(name: "محمد", value: "سعودي"),
-                        DropDownValueModel(name: "احمد", value: "سعودي"),
-                        DropDownValueModel(name: "خالد", value: "سعودي"),
-                      ],
-                      textFieldDecoration:
-                          Constants.setRegistrationTextInputDecoration(
-                              hintText: "الجنسية...",
-                              prefixIcon: SvgPicture.asset(
-                                ipanIcon,
-                                height: 24,
-                              )),
-                    ),
-                  ),
-                ],
-              )),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

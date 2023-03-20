@@ -30,6 +30,15 @@ const String ipanIcon = "assets/images/SVGs/ipanIcon.svg";
 const String ipanIcon2 = "assets/images/SVGs/ipanIcon2.svg";
 const String ekrar = "assets/images/SVGs/ekrar.svg";
 const String dateIcon = "assets/images/SVGs/dateIcon.svg";
+const String countryIcon = "assets/images/SVGs/countryIcon.svg";
+const String cityIcon = "assets/images/SVGs/cityIcon.svg";
+const String nationalityIcon = "assets/images/SVGs/nationalityIcon2.svg";
+const String twitterIcon = "assets/images/SVGs/twitterIcon.svg";
+const String linkedinIcon = "assets/images/SVGs/linkedinIcon.svg";
+const String snapIcon = "assets/images/SVGs/snapIcon.svg";
+const String instaIcon = "assets/images/SVGs/instaIcon.svg";
+const String faceBookIcon = "assets/images/SVGs/faceBookIcon.svg";
+const String youtubeIcon = "assets/images/SVGs/youtubeIcon.svg";
 
 ///////////////////// Jsons////////
 const String otpLotti = "assets/images/Jsons/4.json";

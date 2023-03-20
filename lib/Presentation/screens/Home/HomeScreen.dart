@@ -4,17 +4,14 @@ import 'package:badges/badges.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_svg/svg.dart';
-import 'package:nasooh/Presentation/screens/AuthenticationScreens/LoginScreen/loginscreen.dart';
 import 'package:nasooh/Presentation/screens/Home/Components/AdvisorCard.dart';
 import 'package:nasooh/Presentation/screens/Home/controller/HomeController.dart';
-import 'package:nasooh/Presentation/screens/OnBoardong/OnBoarding.dart';
 import 'package:nasooh/Presentation/widgets/noInternet.dart';
 import 'package:nasooh/app/Style/Icons.dart';
 import 'package:nasooh/app/constants.dart';
 import 'package:nasooh/app/utils/myApplication.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../app/global.dart';
 import '../../../app/utils/lang/language_constants.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -92,9 +89,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
     subscription.cancel();
     _timer!.cancel();
-    homeController.categories.forEach((element) {
+    for (var element in homeController.categories) {
       element["isSelected"] = false;
-    });
+    }
   }
 
   @override
@@ -195,11 +192,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         ]),
                         boxShadow: [
                           BoxShadow(
-                              offset: Offset(0, 6),
+                              offset: const Offset(0, 6),
                               blurRadius: 10,
                               spreadRadius: -5,
                               blurStyle: BlurStyle.normal,
-                              color: Color(0XFF5C5E6B1A).withOpacity(0.1)),
+                              color:
+                                  const Color(0XFF5C5E6B1A).withOpacity(0.1)),
                         ],
                         borderRadius: BorderRadius.circular(5)),
                     child: Stack(
@@ -213,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             homeController.pageViewItem()
                           ],
                         ),
-                        Container(
+                        SizedBox(
                           height: 20,
                           width: 70,
                           child: Center(
@@ -271,10 +269,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   (e) => InkWell(
                                     onTap: () {
                                       setState(() {
-                                        homeController.categories
-                                            .forEach((element) {
+                                        for (var element
+                                            in homeController.categories) {
                                           element["isSelected"] = false;
-                                        });
+                                        }
                                         e["isSelected"] = true;
                                       });
                                     },
@@ -313,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       // shrinkWrap: true,
                       // physics: BouncingScrollPhysics(),
                       itemCount: 6,
-                      itemBuilder: (context, index) => AdvisorCard(),
+                      itemBuilder: (context, index) => const AdvisorCard(),
                     ),
                   ),
                 ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nasooh/Data/cubit/FrontEndCubits/cubit/add_cirtificate_cubit.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage4/components/certificateItem.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
@@ -13,7 +16,10 @@ class RegistrationStage4 extends StatefulWidget {
   State<RegistrationStage4> createState() => _RegistrationStage4State();
 }
 
+List<Map<String, dynamic>> certiList = [];
+
 class _RegistrationStage4State extends State<RegistrationStage4> {
+  TextEditingController certificatesController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -112,13 +118,29 @@ class _RegistrationStage4State extends State<RegistrationStage4> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 24),
                     child: TextFormField(
+                      controller: certificatesController,
                       maxLength: 10,
                       decoration: Constants.setRegistrationTextInputDecoration(
                           hintText: "الشهادات والإنجازات...",
-                          suffixIcon: Padding(
-                            padding: const EdgeInsetsDirectional.only(end: 8),
-                            child: SvgPicture.asset(
-                              certIcaddCertIconon,
+                          suffixIcon: InkWell(
+                            onTap: () {
+                              var idd = DateTime.now().toString();
+                              certiList.add({
+                                "widget": certificateItem(
+                                    cert: certificatesController.text,
+                                    staticId: idd),
+                                "cert": certificatesController.text,
+                                "id": idd
+                              });
+                              certificatesController.clear();
+                              BlocProvider.of<AddCirtificateCubit>(context)
+                                  .addCirtificate();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.only(end: 8),
+                              child: SvgPicture.asset(
+                                certIcaddCertIconon,
+                              ),
                             ),
                           ),
                           prefixIcon: SvgPicture.asset(
@@ -127,22 +149,14 @@ class _RegistrationStage4State extends State<RegistrationStage4> {
                           )),
                     ),
                   ),
-                  Wrap(
-                    children: [
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                      certificates(),
-                    ],
+                  BlocBuilder<AddCirtificateCubit, AddCirtificateState>(
+                    builder: (context, state) {
+                      return Wrap(
+                        children: certiList
+                            .map((e) => e["widget"] as Widget)
+                            .toList(),
+                      );
+                    },
                   )
                 ],
               )),
@@ -152,39 +166,39 @@ class _RegistrationStage4State extends State<RegistrationStage4> {
   }
 
 /////////////// returns
-  Container certificates() {
-    return Container(
-      margin: const EdgeInsetsDirectional.only(end: 4, bottom: 4),
-      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
-      decoration: BoxDecoration(
-          color: const Color(0XFFEEEEEE),
-          borderRadius: BorderRadius.circular(10)),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Text(
-            "عضو نقابة",
-            style: TextStyle(fontFamily: Constants.mainFont, fontSize: 10),
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-          Container(
-            height: 14,
-            width: 14,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(color: const Color(0XFF5C5E6B))),
-            child: const Center(
-              child: Icon(
-                Icons.close_outlined,
-                size: 12,
-                color: Color(0XFF5C5E6B),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
+  // Container certificates({required String cert}) {
+  //   return Container(
+  //     margin: const EdgeInsetsDirectional.only(end: 4, bottom: 4),
+  //     padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+  //     decoration: BoxDecoration(
+  //         color: const Color(0XFFEEEEEE),
+  //         borderRadius: BorderRadius.circular(10)),
+  //     child: Row(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Text(
+  //           cert,
+  //           style: TextStyle(fontFamily: Constants.mainFont, fontSize: 10),
+  //         ),
+  //         const SizedBox(
+  //           width: 8,
+  //         ),
+  //         Container(
+  //           height: 14,
+  //           width: 14,
+  //           decoration: BoxDecoration(
+  //               borderRadius: BorderRadius.circular(100),
+  //               border: Border.all(color: const Color(0XFF5C5E6B))),
+  //           child: const Center(
+  //             child: Icon(
+  //               Icons.close_outlined,
+  //               size: 12,
+  //               color: Color(0XFF5C5E6B),
+  //             ),
+  //           ),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 }

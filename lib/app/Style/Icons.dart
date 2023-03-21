@@ -1,5 +1,5 @@
 ///////// pngs /////////
-const String loginBackground = "assets/images/PNG/loginbackground.jpg";
+const String consultantpng = "assets/images/PNG/consultant_3 1.png.jpg";
 const String onBoardingPNG = "assets/images/PNG/onBoarding.png";
 const String onBoardingPNGbk = "assets/images/PNG/1761.png";
 const String onboardingPnggg = "assets/images/PNG/consultant_3 1.png";

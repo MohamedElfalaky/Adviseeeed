@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/index.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
@@ -6,6 +7,7 @@ import '../../../../../app/constants.dart';
 import '../../../../../app/utils/myApplication.dart';
 import 'package:pinput/pinput.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 
 class RegistrationStage2 extends StatefulWidget {
   const RegistrationStage2({Key? key}) : super(key: key);
@@ -15,6 +17,17 @@ class RegistrationStage2 extends StatefulWidget {
 }
 
 class _RegistrationStage2State extends State<RegistrationStage2> {
+  late CountdownTimerController timerController;
+  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    timerController = CountdownTimerController(endTime: endTime, onEnd: () {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -95,9 +108,29 @@ class _RegistrationStage2State extends State<RegistrationStage2> {
                       style: Constants.subtitleRegularFont,
                     ),
                   ),
-                  const Text(
-                    "سيتم اعادة ارسال الكود بعد 1:00",
-                    style: Constants.subtitleRegularFont,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "سيتم اعادة ارسال الكود بعد ",
+                        style: Constants.subtitleRegularFont,
+                      ),
+                      CountdownTimer(
+                        controller: timerController,
+                        widgetBuilder: (_, time) {
+                          if (time == null) {
+                            return Text(
+                              '00:00',
+                              style: Constants.subtitleRegularFont,
+                            );
+                          }
+                          return Text(
+                            '${time.min ?? "00"}:${time.sec}',
+                            style: Constants.subtitleRegularFont,
+                          );
+                        },
+                      ),
+                    ],
                   ),
 
                   Padding(

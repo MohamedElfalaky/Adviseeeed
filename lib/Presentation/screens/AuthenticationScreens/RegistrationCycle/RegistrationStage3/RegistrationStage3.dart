@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage3/R3controller.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
+import 'package:photo_view/photo_view.dart';
 import '../../../../../app/constants.dart';
 import '../../../../../app/utils/myApplication.dart';
 
@@ -15,6 +21,25 @@ class RegistrationStage3 extends StatefulWidget {
 }
 
 class _RegistrationStage3State extends State<RegistrationStage3> {
+  // Reisteration3Controller r3Controller = Reisteration3Controller();
+
+  final ImagePicker _picker = ImagePicker();
+  XFile? regImage;
+
+  Future pickImage(ImageSource source) async {
+    try {
+      final myImage = await _picker.pickImage(source: source);
+      if (myImage == null) return;
+
+      setState(() {
+        regImage = myImage;
+      });
+    } on PlatformException catch (e) {
+      print("platform exeption : $e");
+    }
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -70,6 +95,13 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Container(
+                  //   height: 200,
+                  //   width: 200,
+                  //   child: PhotoView(
+                  //       imageProvider: AssetImage(
+                  //           "assets/images/how-to-open-image-with-image-picker-crop-and-save-in-flutter.jpg")),
+                  // ),
                   Center(
                     child: SizedBox(
                       height: 190,
@@ -92,21 +124,97 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
                                         color: const Color(0XFFF8F8F9),
                                         borderRadius:
                                             BorderRadius.circular(16)),
-                                    child: SvgPicture.asset(
-                                      logotrans,
-                                      color: Colors.transparent.withOpacity(.2),
-                                    )),
+                                    child: regImage == null
+                                        ? SvgPicture.asset(
+                                            logotrans,
+                                            color: Colors.transparent
+                                                .withOpacity(.2),
+                                          )
+                                        : ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            child: PhotoView(
+                                                imageProvider: FileImage(
+                                              File(regImage!.path),
+                                            )
+                                                // Image.file(
+                                                //   File(regImage!.path),
+                                                //   fit: BoxFit.cover,
+                                                // ),
+                                                ),
+                                          )),
                               ),
                             ),
                           ),
-                          const Align(
+                          Align(
                             alignment: Alignment.bottomRight,
-                            child: CircleAvatar(
-                              backgroundColor: Color(0XFF444444),
-                              radius: 20,
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: Colors.white,
+                            child: InkWell(
+                              onTap: () {
+                                // pickImage(ImageSource.gallery);
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (ctx) {
+                                    return Container(
+                                        padding: EdgeInsets.all(8),
+                                        // height: 100,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                pickImage(ImageSource.gallery);
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Icon(Icons.photo),
+                                                  SizedBox(
+                                                    width: 8,
+                                                  ),
+                                                  Text("اختر من المعرض",
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontFamily: Constants
+                                                              .mainFont)),
+                                                ],
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                pickImage(ImageSource.camera);
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Icon(Icons
+                                                      .camera_alt_outlined),
+                                                  SizedBox(
+                                                    width: 8,
+                                                  ),
+                                                  Text(
+                                                    "التقط صورة",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontFamily:
+                                                            Constants.mainFont),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ));
+                                  },
+                                );
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: Color(0XFF444444),
+                                radius: 20,
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           )

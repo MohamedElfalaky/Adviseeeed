@@ -106,17 +106,29 @@ class _RegistrationStage5State extends State<RegistrationStage5> {
                   ),
                   ExpansionTile(
                       tilePadding: EdgeInsets.all(0),
-                      leading: SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Checkbox(value: false, onChanged: (s) {})),
-                      title: Text(
-                        "الإلكترونية",
-                        style: Constants.secondaryTitleFont,
+                      // leading: SizedBox(
+                      //     height: 24,
+                      //     width: 24,
+                      //     child: Checkbox(value: false, onChanged: (s) {})),
+                      title: Row(
+                        children: [
+                          SizedBox(
+                              height: 24,
+                              width: 24,
+                              child: Checkbox(value: false, onChanged: (s) {})),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            "الإلكترونية",
+                            style: Constants.secondaryTitleFont,
+                          ),
+                        ],
                       ),
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(4),
+                          padding: const EdgeInsetsDirectional.only(
+                              start: 12, end: 4, top: 4, bottom: 4),
                           child: Row(
                             children: [
                               SizedBox(
@@ -135,7 +147,8 @@ class _RegistrationStage5State extends State<RegistrationStage5> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(4),
+                          padding: const EdgeInsetsDirectional.only(
+                              start: 12, end: 4, top: 4, bottom: 4),
                           child: Row(
                             children: [
                               SizedBox(
@@ -154,56 +167,6 @@ class _RegistrationStage5State extends State<RegistrationStage5> {
                           ),
                         ),
                       ]),
-                  ExpansionTile(
-                      tilePadding: EdgeInsets.all(0),
-                      leading: SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Checkbox(value: false, onChanged: (s) {})),
-                      title: Text(
-                        "الإلكترونية",
-                        style: Constants.secondaryTitleFont,
-                      ),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                  height: 24,
-                                  width: 24,
-                                  child: Checkbox(
-                                      value: false, onChanged: (s) {})),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "التسويق الألكتروني",
-                                style: Constants.secondaryTitleRegularFont,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                  height: 24,
-                                  width: 24,
-                                  child: Checkbox(
-                                      value: false, onChanged: (s) {})),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "التسويق الإعلاني",
-                                style: Constants.secondaryTitleRegularFont,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ])
                 ],
               )),
         ),

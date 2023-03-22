@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage3/R3controller.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage4/RegistrationStage4.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
@@ -60,7 +61,9 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
                 child: MyButton(
                   isBold: true,
                   txt: "التالي",
-                  onPressedHandler: () {},
+                  onPressedHandler: () {
+                    MyApplication.navigateTo(context, RegistrationStage4());
+                  },
                 ),
               ),
               const Padding(

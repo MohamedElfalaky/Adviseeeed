@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nasooh/Data/cubit/FrontEndCubits/cubit/add_cirtificate_cubit.dart';
 import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage4/components/certificateItem.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage5/RegistrationStage5.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
@@ -40,7 +41,9 @@ class _RegistrationStage4State extends State<RegistrationStage4> {
                 child: MyButton(
                   isBold: true,
                   txt: "التالي",
-                  onPressedHandler: () {},
+                  onPressedHandler: () {
+                    MyApplication.navigateTo(context, RegistrationStage5());
+                  },
                 ),
               ),
               const Padding(
@@ -124,17 +127,21 @@ class _RegistrationStage4State extends State<RegistrationStage4> {
                           hintText: "الشهادات والإنجازات...",
                           suffixIcon: InkWell(
                             onTap: () {
-                              var idd = DateTime.now().toString();
-                              certiList.add({
-                                "widget": certificateItem(
-                                    cert: certificatesController.text,
-                                    staticId: idd),
-                                "cert": certificatesController.text,
-                                "id": idd
-                              });
-                              certificatesController.clear();
-                              BlocProvider.of<AddCirtificateCubit>(context)
-                                  .addCirtificate();
+                              if (certificatesController.text.isNotEmpty) {
+                                var idd = DateTime.now().toString();
+                                certiList.add({
+                                  "widget": certificateItem(
+                                      cert: certificatesController.text,
+                                      staticId: idd),
+                                  "cert": certificatesController.text,
+                                  "id": idd
+                                });
+                                certificatesController.clear();
+                                MyApplication.dismissKeyboard(context);
+
+                                BlocProvider.of<AddCirtificateCubit>(context)
+                                    .addCirtificate();
+                              }
                             },
                             child: Padding(
                               padding: const EdgeInsetsDirectional.only(end: 8),

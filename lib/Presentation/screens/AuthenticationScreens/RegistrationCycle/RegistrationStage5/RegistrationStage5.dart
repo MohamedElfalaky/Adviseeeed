@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage6/RegistrationStage6.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
@@ -34,7 +35,9 @@ class _RegistrationStage5State extends State<RegistrationStage5> {
                 child: MyButton(
                   isBold: true,
                   txt: "التالي",
-                  onPressedHandler: () {},
+                  onPressedHandler: () {
+                    MyApplication.navigateTo(context, RegistrationStage6());
+                  },
                 ),
               ),
               const Padding(

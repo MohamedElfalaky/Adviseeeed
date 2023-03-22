@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nasooh/Data/cubit/FrontEndCubits/cubit/add_cirtificate_cubit.dart';
 import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage4/RegistrationStage4.dart';
 import 'package:nasooh/app/constants.dart';
+import 'package:nasooh/app/utils/myApplication.dart';
 
 class certificateItem extends StatefulWidget {
   final String cert;
@@ -44,6 +45,7 @@ class _certificateItemState extends State<certificateItem> {
                 onTap: () {
                   certiList.removeWhere(
                       (element) => element["id"].toString() == widget.staticId);
+
                   BlocProvider.of<AddCirtificateCubit>(context)
                       .addCirtificate();
 

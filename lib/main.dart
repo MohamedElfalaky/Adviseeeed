@@ -147,7 +147,7 @@ class _MyAppState extends State<MyApp> {
               titleTextStyle: Constants.mainTitleFont,
             ),
             scaffoldBackgroundColor: Constants.whiteAppColor),
-        home: const RegistrationStage6(),
+        home: const LoginScreen(),
       ),
     );
   }

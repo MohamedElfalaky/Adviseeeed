@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage7/RegistrationStage7.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/MyButtonOutlined.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
@@ -15,6 +16,8 @@ class RegistrationStage6 extends StatefulWidget {
 }
 
 class _RegistrationStage6State extends State<RegistrationStage6> {
+  var _groupValue;
+  bool _termsConditions = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -41,7 +44,10 @@ class _RegistrationStage6State extends State<RegistrationStage6> {
                         child: MyButton(
                           isBold: true,
                           txt: "التالي",
-                          onPressedHandler: () {},
+                          onPressedHandler: () {
+                            MyApplication.navigateTo(
+                                context, RegistrationStage7());
+                          },
                         ),
                       ),
                     ),
@@ -125,7 +131,14 @@ class _RegistrationStage6State extends State<RegistrationStage6> {
                       SizedBox(
                           height: 24,
                           width: 24,
-                          child: Checkbox(value: false, onChanged: (d) {}))
+                          child: Checkbox(
+                              activeColor: Constants.primaryAppColor,
+                              value: _termsConditions,
+                              onChanged: (d) {
+                                setState(() {
+                                  _termsConditions = d!;
+                                });
+                              }))
                     ],
                   ),
                   const Padding(
@@ -155,26 +168,36 @@ class _RegistrationStage6State extends State<RegistrationStage6> {
                       SizedBox(
                         width: 120,
                         child: RadioListTile(
+                            activeColor: Constants.primaryAppColor,
                             contentPadding: const EdgeInsets.all(0),
                             title: const Text(
                               "ذكر",
                               style: Constants.secondaryTitleRegularFont,
                             ),
-                            value: "value",
-                            groupValue: "groupValue",
-                            onChanged: (s) {}),
+                            value: "ذكر",
+                            groupValue: _groupValue,
+                            onChanged: (s) {
+                              setState(() {
+                                _groupValue = s;
+                              });
+                            }),
                       ),
                       SizedBox(
                         width: 120,
                         child: RadioListTile(
+                            activeColor: Constants.primaryAppColor,
                             contentPadding: const EdgeInsets.all(0),
                             title: const Text(
                               "أنثى",
                               style: Constants.secondaryTitleRegularFont,
                             ),
-                            value: "value",
-                            groupValue: "groupValue",
-                            onChanged: (s) {}),
+                            value: "أنثى",
+                            groupValue: _groupValue,
+                            onChanged: (s) {
+                              setState(() {
+                                _groupValue = s;
+                              });
+                            }),
                       )
                     ],
                   )

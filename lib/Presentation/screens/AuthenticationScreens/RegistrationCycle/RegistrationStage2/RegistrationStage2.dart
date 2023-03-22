@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/index.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage3/RegistrationStage3.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
@@ -95,7 +96,9 @@ class _RegistrationStage2State extends State<RegistrationStage2> {
                     child: MyButton(
                       isBold: true,
                       txt: "التالي",
-                      onPressedHandler: () {},
+                      onPressedHandler: () {
+                        MyApplication.navigateTo(context, RegistrationStage3());
+                      },
                     ),
                   ),
                   Padding(

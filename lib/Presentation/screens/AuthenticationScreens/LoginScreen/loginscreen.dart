@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage1/RegistrationStage1.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/app/Style/Icons.dart';
 import 'package:password_text_field/password_text_field.dart';
@@ -189,12 +190,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text("ماعندك حساب؟",
                               textAlign: TextAlign.center,
                               style: Constants.subtitleFont1)),
-                      const SizedBox(
+                      SizedBox(
                         width: double.infinity,
-                        child: Text(
-                          "سجل معنا",
-                          style: Constants.secondaryTitleFont,
-                          textAlign: TextAlign.center,
+                        child: InkWell(
+                          onTap: () => MyApplication.navigateTo(
+                              context, RegistrationStage1()),
+                          child: Text(
+                            "سجل معنا",
+                            style: Constants.secondaryTitleFont,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
 

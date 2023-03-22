@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nasooh/Presentation/screens/AuthenticationScreens/RegistrationCycle/RegistrationStage2/RegistrationStage2.dart';
 import 'package:nasooh/Presentation/widgets/MyButton.dart';
 import 'package:nasooh/Presentation/widgets/shared.dart';
 
@@ -96,7 +97,9 @@ class _RegistrationStage1State extends State<RegistrationStage1> {
                     child: MyButton(
                       isBold: true,
                       txt: "إرسال رمز التحقق",
-                      onPressedHandler: () {},
+                      onPressedHandler: () {
+                        MyApplication.navigateTo(context, RegistrationStage2());
+                      },
                     ),
                   ),
                   const Padding(

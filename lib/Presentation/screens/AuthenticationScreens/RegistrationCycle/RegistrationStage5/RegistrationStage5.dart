@@ -170,6 +170,9 @@ class _RegistrationStage5State extends State<RegistrationStage5> {
                           ),
                         ),
                       ]),
+                  SizedBox(
+                    height: 90,
+                  )
                 ],
               )),
         ),

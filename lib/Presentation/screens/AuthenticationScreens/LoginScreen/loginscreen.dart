@@ -17,9 +17,35 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  late AnimationController _fadeController;
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 2500));
+    _animationController.forward();
+
+    _fadeController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 3500));
+    _fadeController.forward();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _animationController.dispose();
+    _fadeController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -61,13 +87,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 24, top: 44),
-                        child: Center(
-                          child: SvgPicture.asset(
-                            soNew,
-                            width: 148,
-                            height: 148,
+                      SlideTransition(
+                        position: Tween<Offset>(
+                                begin: Offset(0, -1), end: Offset(0, 0.1))
+                            .animate(_animationController),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 24, top: 44),
+                          child: Center(
+                            child: SvgPicture.asset(
+                              soNew,
+                              width: 148,
+                              height: 148,
+                            ),
                           ),
                         ),
                       ),
@@ -77,74 +108,82 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: Constants.headerNavigationFont,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 34, bottom: 10),
-                        child: MyIntlPhoneField(
-                          controller: _phoneController,
-                          showDropdownIcon: true,
-                          dropdownIcon: const Icon(
-                            Icons.arrow_drop_down,
-                            color: Colors.transparent,
-                            size: 6,
-                          ),
-                          style: Constants.subtitleFont1,
-                          // dropdownIconPosition: IconPosition.trailing,
-                          textAlign: TextAlign.right,
-                          decoration: InputDecoration(
-                            hintText: "رقم الجوال...",
-                            hintStyle: Constants.subtitleRegularFontHint,
-                            errorStyle: Constants.subtitleFont1.copyWith(
-                              color: Colors.red,
+                      FadeTransition(
+                        opacity: _fadeController,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 34, bottom: 10),
+                          child: MyIntlPhoneField(
+                            controller: _phoneController,
+                            showDropdownIcon: true,
+                            dropdownIcon: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.transparent,
+                              size: 6,
                             ),
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              gapPadding: 0,
-                              borderSide: const BorderSide(
-                                color: Color(0xff808488),
+                            style: Constants.subtitleFont1,
+                            // dropdownIconPosition: IconPosition.trailing,
+                            textAlign: TextAlign.right,
+                            decoration: InputDecoration(
+                              hintText: "رقم الجوال...",
+                              hintStyle: Constants.subtitleRegularFontHint,
+                              errorStyle: Constants.subtitleFont1.copyWith(
+                                color: Colors.red,
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                gapPadding: 0,
+                                borderSide: const BorderSide(
+                                  color: Color(0xff808488),
+                                ),
                               ),
                             ),
+                            initialCountryCode: 'SA',
+                            onChanged: (phone) {
+                              print(phone.completeNumber);
+                            },
+                            invalidNumberMessage:
+                                getTranslated(context, "invalid_number")!,
                           ),
-                          initialCountryCode: 'SA',
-                          onChanged: (phone) {
-                            print(phone.completeNumber);
-                          },
-                          invalidNumberMessage:
-                              getTranslated(context, "invalid_number")!,
                         ),
                       ),
-                      PasswordTextFormField(
-                          style: Constants.subtitleFont1,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return getTranslated(
-                                  context, "password_required")!;
-                            }
-                            if (value.length < 6) {
-                              return getTranslated(context, "password_length")!;
-                            }
-                            return null;
-                          },
-                          decoration: Constants.setTextInputDecoration(
-                              hintText: "كلمة المرور...",
-                              prefixIcon: Container(
-                                width: 30,
-                                decoration: const BoxDecoration(
-                                    border: Border(
-                                        left: BorderSide(
-                                            width: 1,
-                                            color: Color(0xFFBDBDBD)))),
-                                margin:
-                                    const EdgeInsetsDirectional.only(end: 8),
-                                padding:
-                                    const EdgeInsetsDirectional.only(end: 8),
-                                child: SvgPicture.asset(
-                                  passField,
-                                  height: 24,
-                                ),
-                              ))),
+                      FadeTransition(
+                        opacity: _fadeController,
+                        child: PasswordTextFormField(
+                            style: Constants.subtitleFont1,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return getTranslated(
+                                    context, "password_required")!;
+                              }
+                              if (value.length < 6) {
+                                return getTranslated(
+                                    context, "password_length")!;
+                              }
+                              return null;
+                            },
+                            decoration: Constants.setTextInputDecoration(
+                                hintText: "كلمة المرور...",
+                                prefixIcon: Container(
+                                  width: 30,
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                          left: BorderSide(
+                                              width: 1,
+                                              color: Color(0xFFBDBDBD)))),
+                                  margin:
+                                      const EdgeInsetsDirectional.only(end: 8),
+                                  padding:
+                                      const EdgeInsetsDirectional.only(end: 8),
+                                  child: SvgPicture.asset(
+                                    passField,
+                                    height: 24,
+                                  ),
+                                ))),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 30),
                         child: Row(
@@ -164,23 +203,30 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 48,
-                        child: MyButton(
-                          isBold: true,
-                          txt: "تسجيل الدخول",
-                          onPressedHandler: () {},
+                      FadeTransition(
+                        opacity: _fadeController,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 48,
+                          child: MyButton(
+                            isBold: true,
+                            txt: "تسجيل الدخول",
+                            onPressedHandler: () {},
+                          ),
                         ),
                       ),
                       const SizedBox(
                         height: 32,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Text(getTranslated(context, "forgot_password")!,
-                            textAlign: TextAlign.center,
-                            style: Constants.mainTitleFont),
+                      FadeTransition(
+                        opacity: _fadeController,
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                              getTranslated(context, "forgot_password")!,
+                              textAlign: TextAlign.center,
+                              style: Constants.mainTitleFont),
+                        ),
                       ),
                       const SizedBox(
                         height: 80,

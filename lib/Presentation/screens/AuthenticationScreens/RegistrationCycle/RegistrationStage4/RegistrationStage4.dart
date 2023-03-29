@@ -164,6 +164,9 @@ class _RegistrationStage4State extends State<RegistrationStage4> {
                             .toList(),
                       );
                     },
+                  ),
+                  SizedBox(
+                    height: 90,
                   )
                 ],
               )),

@@ -39,6 +39,7 @@ const String snapIcon = "assets/images/SVGs/snapIcon.svg";
 const String instaIcon = "assets/images/SVGs/instaIcon.svg";
 const String faceBookIcon = "assets/images/SVGs/faceBookIcon.svg";
 const String youtubeIcon = "assets/images/SVGs/youtubeIcon.svg";
+const String onboardingImage = "assets/images/SVGs/OnboardingImage.svg";
 
 ///////////////////// Jsons////////
 const String otpLotti = "assets/images/Jsons/4.json";

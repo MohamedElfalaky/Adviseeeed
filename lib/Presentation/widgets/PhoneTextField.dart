@@ -366,7 +366,12 @@ class _MyIntlPhoneFieldState extends State<MyIntlPhoneField> {
         widget.onChanged?.call(phoneNumber);
       },
       validator: (value) {
-        if (!widget.disableLengthCheck && value != null) {
+        if (value!.isEmpty) {
+          return "رجاء ادخال رقم الهاتف";
+        } else if (!value.toString().startsWith("5")) {
+          return "رقم الهاتف يبدأ ب 5";
+        } else if (!widget.disableLengthCheck && value != null) {
+          // print("hahahaahaha $value");
           return value.length >= _selectedCountry.minLength &&
                   value.length <= _selectedCountry.maxLength
               ? null

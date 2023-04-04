@@ -50,7 +50,7 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         floatingActionButton: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,13 +98,6 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Container(
-                  //   height: 200,
-                  //   width: 200,
-                  //   child: PhotoView(
-                  //       imageProvider: AssetImage(
-                  //           "assets/images/how-to-open-image-with-image-picker-crop-and-save-in-flutter.jpg")),
-                  // ),
                   Center(
                     child: SizedBox(
                       height: 190,
@@ -220,6 +213,16 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
                                 ),
                               ),
                             ),
+                          ),
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    regImage = null;
+                                  });
+                                },
+                                child: CircleAvatar(child: Icon(Icons.close))),
                           )
                         ],
                       ),
@@ -277,6 +280,9 @@ class _RegistrationStage3State extends State<RegistrationStage3> {
                           )),
                     ),
                   ),
+                  SizedBox(
+                    height: 90,
+                  )
                 ],
               )),
         ),

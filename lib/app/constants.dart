@@ -226,4 +226,10 @@ class Constants {
       color: const Color.fromRGBO(234, 239, 243, 1),
     ),
   );
+
+  static final errorPinTheme = defaultPinTheme.copyWith(
+    decoration: defaultPinTheme.decoration!.copyWith(
+      border: Border.all(color: Colors.red),
+    ),
+  );
 }

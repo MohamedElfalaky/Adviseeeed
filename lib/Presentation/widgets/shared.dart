@@ -4,6 +4,28 @@ import 'package:flutter_svg/svg.dart';
 import '../../app/constants.dart';
 import '../../app/utils/lang/language_constants.dart';
 
+class appbarButton extends StatelessWidget {
+  Icon? myIcon;
+  var onTapHandler;
+
+  appbarButton({super.key, this.myIcon, this.onTapHandler});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onTapHandler,
+      child: Container(
+        height: 40,
+        width: 40,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Color(0XFFFFFFFF).withOpacity(0.2)),
+        child: myIcon,
+      ),
+    );
+  }
+}
+
 class goBack extends StatelessWidget {
   const goBack({
     Key? key,

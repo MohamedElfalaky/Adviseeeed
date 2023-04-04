@@ -2,11 +2,15 @@ import 'dart:async';
 
 import 'package:badges/badges.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_svg/svg.dart';
+import 'package:nasooh/Presentation/screens/Home/Components/Advicess.dart';
 import 'package:nasooh/Presentation/screens/Home/Components/AdvisorCard.dart';
+import 'package:nasooh/Presentation/screens/Home/Components/outComeandRate.dart';
 import 'package:nasooh/Presentation/screens/Home/controller/HomeController.dart';
 import 'package:nasooh/Presentation/widgets/noInternet.dart';
+import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
 import 'package:nasooh/app/constants.dart';
 import 'package:nasooh/app/utils/myApplication.dart';
@@ -26,25 +30,11 @@ class _HomeScreenState extends State<HomeScreen> {
   late StreamSubscription<ConnectivityResult> subscription;
   bool? isConnected;
   final controller = PageController(initialPage: 0);
-  int _currentPage = 0;
-  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
-      if (_currentPage < 2) {
-        _currentPage++;
-      } else {
-        _currentPage = 0;
-      }
 
-      controller.animateToPage(
-        _currentPage,
-        duration: const Duration(milliseconds: 350),
-        curve: Curves.easeIn,
-      );
-    });
 ///////////////////////////
     MyApplication.checkConnection().then((value) {
       if (value) {
@@ -88,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     super.dispose();
     subscription.cancel();
-    _timer!.cancel();
     for (var element in homeController.categories) {
       element["isSelected"] = false;
     }
@@ -117,205 +106,186 @@ class _HomeScreenState extends State<HomeScreen> {
 
       child: Scaffold(
           backgroundColor: Constants.whiteAppColor,
-          body: Container(
-              color: Constants.whiteAppColor,
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height,
-              margin: const EdgeInsets.only(left: 16, right: 16, top: 16),
-              child: Column(
-                children: [
-                  Row(
+          body: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Stack(
+              children: [
+                Container(
+                  height: MyApplication.hightClc(context, 160),
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      color: Constants.primaryAppColor,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(25),
+                          bottomRight: Radius.circular(25))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Badge(
-                        badgeColor: Constants.primaryAppColor,
-                        // borderSide: const BorderSide(color: Colors.white),
-                        position: BadgePosition.topStart(top: -7, start: 0),
-                        badgeContent: const Text(
-                          "9+",
-                          style: TextStyle(
-                              fontSize: 8, color: Constants.whiteAppColor),
-                          // context.watch<CartItemsCubit>().cartLength ?? "",
-                          // style: const TextStyle(color: Colors.white),
-                        ),
-                        child: Card(
-                          child: SizedBox(
-                            height: 40,
-                            width: 40,
-                            child: Center(
-                              child: SvgPicture.asset(
-                                tempPic,
-                                height: 25,
-                              ),
-                            ),
+                      appbarButton(
+                          myIcon: const Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                      )),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "حياك الله بنصوح",
+                            style: Constants.secondaryTitleRegularFont
+                                .copyWith(color: Colors.white),
                           ),
-                        ),
+                          Text(
+                            "Mohamed Ahmed Mohamed",
+                            style: Constants.secondaryTitleFont
+                                .copyWith(color: Colors.white),
+                          ),
+                        ],
                       ),
-                      const Spacer(),
                       SvgPicture.asset(
-                        tempPic,
-                        height: 50,
-                      ),
+                        logoColor,
+                        color: Colors.white,
+                        height: 60,
+                      )
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  TextField(
-                    decoration: Constants.setTextInputDecoration(
-                        prefixIcon: SvgPicture.asset(
-                          tempPic,
-                          height: 20,
-                        ),
-                        hintText: "ابحث باسم الناصح أو التخصص ...."),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-
-                  ///
-                  ///
-                  ///
-                  //////////////////// Slider
-                  ///
-                  ///
-                  ///
-                  Container(
-                    height: 140,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(colors: [
-                          Constants.primaryAppColor,
-                          Constants.whiteAppColor,
-                        ], stops: [
-                          0,
-                          0.6
-                        ]),
-                        boxShadow: [
-                          BoxShadow(
-                              offset: const Offset(0, 6),
-                              blurRadius: 10,
-                              spreadRadius: -5,
-                              blurStyle: BlurStyle.normal,
-                              color:
-                                  const Color(0XFF5C5E6B1A).withOpacity(0.1)),
-                        ],
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
+                ),
+                Positioned(
+                  top: MyApplication.hightClc(context, 160) - 25,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height -
+                        MyApplication.hightClc(context, 160) +
+                        25,
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        PageView(
-                          controller: controller,
-                          children: [
-                            homeController.pageViewItem(),
-                            homeController.pageViewItem(),
-                            homeController.pageViewItem()
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                          width: 70,
-                          child: Center(
-                            child: SmoothPageIndicator(
-                              onDotClicked: (index) {
-                                if (_currentPage < 2) {
-                                  _currentPage++;
-                                } else {
-                                  _currentPage = 0;
-                                }
-
-                                controller.animateToPage(
-                                  _currentPage,
-                                  duration: const Duration(milliseconds: 350),
-                                  curve: Curves.easeIn,
-                                );
-                              },
-                              controller: controller,
-                              count: 3,
-                              effect: ExpandingDotsEffect(
-                                  activeDotColor: Constants.primaryAppColor,
-                                  dotColor: Constants.primaryAppColor
-                                      .withOpacity(0.2),
-                                  spacing: 5,
-                                  dotWidth: 8,
-                                  dotHeight: 4),
+                        TextField(
+                          decoration:
+                              Constants.setRegistrationTextInputDecoration(
+                            prefixIcon: SvgPicture.asset(searchIcon),
+                            hintText: "ابحث عن الطلبات...",
+                          ).copyWith(
+                            enabledBorder: OutlineInputBorder(
+                              gapPadding: 0,
+                              borderSide: BorderSide(
+                                color:
+                                    const Color(0xff0085A5).withOpacity(0.25),
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(25),
+                              ),
                             ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            // border: const OutlineInputBorder(
+                            //   gapPadding: 0,
+                            //   borderSide: BorderSide(
+                            //     color: Color(0xff27AE60),
+                            //   ),
+                            //   borderRadius: BorderRadius.all(
+                            //     Radius.circular(24),
+                            //   ),
+                            // )
                           ),
-                        )
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.only(top: 24, bottom: 32),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                OutcomeAndRate(
+                                  title: "الأرباح الكلية",
+                                  subtitle: "12.725 SR",
+                                  colorr: Constants.primaryAppColor,
+                                ),
+                                OutcomeAndRate(
+                                  title: "التقييم الإجمالي",
+                                  subtitle: "4.8",
+                                  colorr: const Color(0xFF27AE60),
+                                )
+                              ],
+                            )),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              ...homeController.categories.map((e) =>
+                                  AnimatedContainer(
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut,
+                                    margin: const EdgeInsetsDirectional.only(
+                                        end: 8),
+                                    decoration: BoxDecoration(
+                                        color: e["isSelected"]
+                                            ? Constants.primaryAppColor
+                                            : const Color(0xff2730431A)
+                                                .withOpacity(0.1),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(15),
+                                      onTap: () {
+                                        setState(() {
+                                          for (var element
+                                              in homeController.categories) {
+                                            element["isSelected"] = false;
+                                          }
+                                          e["isSelected"] = true;
+                                        });
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 4),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              e["name"],
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      Constants.mainFont,
+                                                  color: e["isSelected"]
+                                                      ? Colors.white
+                                                      : Colors.black,
+                                                  fontSize: 12),
+                                            ),
+                                            const SizedBox(
+                                              width: 12,
+                                            ),
+                                            Text(
+                                              "2",
+                                              style: TextStyle(
+                                                color: e["isSelected"]
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 18,
+                        ),
+                        Expanded(
+                            child: ListView.builder(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => Advicess(),
+                          itemCount: 4,
+                        ))
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-
-                  ///
-                  ///
-                  ///
-                  ///
-                  ///////////////////// Filter bar
-                  ///
-                  ///
-                  ///
-                  ///
-                  Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.only(top: 8),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                            // scrollDirection: Axis.horizontal,
-                            children: homeController.categories
-                                .map(
-                                  (e) => InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        for (var element
-                                            in homeController.categories) {
-                                          element["isSelected"] = false;
-                                        }
-                                        e["isSelected"] = true;
-                                      });
-                                    },
-                                    child: Container(
-                                        margin: const EdgeInsets.only(left: 16),
-                                        child: Text(
-                                          e["name"],
-                                          style: e["isSelected"] == true
-                                              ? const TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily:
-                                                      Constants.mainFont,
-                                                  fontSize: 16)
-                                              : const TextStyle(
-                                                  fontFamily:
-                                                      Constants.mainFont),
-                                        )),
-                                  ),
-                                )
-                                .toList()),
-                      )),
-
-                  ///
-                  ///
-                  ///
-                  /////////////////////////////// Advisor Card
-                  ///
-                  ///
-                  ///
-
-                  // SizedBox(
-                  //   height: 8,
-                  // ),
-                  Expanded(
-                    child: ListView.builder(
-                      // shrinkWrap: true,
-                      // physics: BouncingScrollPhysics(),
-                      itemCount: 6,
-                      itemBuilder: (context, index) => const AdvisorCard(),
-                    ),
-                  ),
-                ],
-              ))),
+                )
+              ],
+            ),
+          )),
     );
   }
 }

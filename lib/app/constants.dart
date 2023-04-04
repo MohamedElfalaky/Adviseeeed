@@ -125,7 +125,7 @@ class Constants {
   }
 
 // TextFieldInputs
-  static setRegistrationTextInputDecoration(
+  static InputDecoration setRegistrationTextInputDecoration(
       {Widget? prefixIcon,
       Widget? suffixIcon,
       Color? prefixColor,

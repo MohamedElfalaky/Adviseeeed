@@ -6,15 +6,11 @@ import 'package:nasooh/app/constants.dart';
 class HomeController {
   ///vars
   List<Map> categories = [
-    {"name": "جميع المجالات", "isSelected": true},
-    {"name": "المحماة", "isSelected": false},
-    {"name": "التكنولوجيا والبيئة السطحية", "isSelected": false},
-    {"name": "الهندسة", "isSelected": false},
-    {"name": "المحماة", "isSelected": false},
-    {"name": "الطب", "isSelected": false},
-    {"name": "المحماة", "isSelected": false},
-    {"name": "التجارة", "isSelected": false},
-    {"name": "المحماة", "isSelected": false},
+    {"name": "الكل", "isSelected": true},
+    {"name": "الجديدة", "isSelected": false},
+    {"name": "قيد التنفيذ", "isSelected": false},
+    {"name": "الملغية", "isSelected": false},
+    {"name": "المكتملة", "isSelected": false},
   ];
 
   ///methods

@@ -40,6 +40,7 @@ const String instaIcon = "assets/images/SVGs/instaIcon.svg";
 const String faceBookIcon = "assets/images/SVGs/faceBookIcon.svg";
 const String youtubeIcon = "assets/images/SVGs/youtubeIcon.svg";
 const String nasehaCost = "assets/images/SVGs/nasehaCost.svg";
+const String onboardingImage = "assets/images/SVGs/OnboardingImage.svg";
 // const String appbarLogo = "assets/images/SVGs/appbarLogo.svg";
 
 ///////////////////// Jsons////////

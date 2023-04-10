@@ -6,14 +6,14 @@ import '../../app/utils/lang/language_constants.dart';
 
 class appbarButton extends StatelessWidget {
   Icon? myIcon;
-  var onTapHandler;
+  Function()? onTapHandler;
 
   appbarButton({super.key, this.myIcon, this.onTapHandler});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTapHandler,
+      onTap: onTapHandler,
       child: Container(
         height: 40,
         width: 40,

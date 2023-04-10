@@ -1,12 +1,9 @@
 import 'dart:async';
 
-import 'package:badges/badges.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_svg/svg.dart';
 import 'package:nasooh/Presentation/screens/Home/Components/Advicess.dart';
-import 'package:nasooh/Presentation/screens/Home/Components/AdvisorCard.dart';
 import 'package:nasooh/Presentation/screens/Home/Components/outComeandRate.dart';
 import 'package:nasooh/Presentation/screens/Home/controller/HomeController.dart';
 import 'package:nasooh/Presentation/widgets/noInternet.dart';
@@ -14,7 +11,6 @@ import 'package:nasooh/Presentation/widgets/shared.dart';
 import 'package:nasooh/app/Style/Icons.dart';
 import 'package:nasooh/app/constants.dart';
 import 'package:nasooh/app/utils/myApplication.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../app/utils/lang/language_constants.dart';
 
@@ -27,6 +23,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeController homeController = HomeController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final TextEditingController _textController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
   late StreamSubscription<ConnectivityResult> subscription;
   bool? isConnected;
   final controller = PageController(initialPage: 0);
@@ -77,6 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     super.dispose();
+    _textController.dispose();
+    _focusNode.dispose();
     subscription.cancel();
     for (var element in homeController.categories) {
       element["isSelected"] = false;
@@ -105,7 +107,86 @@ class _HomeScreenState extends State<HomeScreen> {
       }, // hide keyboard on tap anywhere
 
       child: Scaffold(
+          key: _scaffoldKey,
           backgroundColor: Constants.whiteAppColor,
+          drawer: Drawer(
+            child: ListView(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(
+                      top: MyApplication.hightClc(context, 50),
+                      bottom: 12,
+                      right: 24,
+                      left: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 84,
+                        width: 84,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                                width: 6,
+                                color:
+                                    const Color(0XFF7C7C84).withOpacity(0.2))),
+                        child: SvgPicture.asset(
+                          onboardingImage,
+                          height: 70,
+                          width: 70,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      const Text(
+                        "محمد عبدالعزيز الحميد كامل",
+                        style: Constants.mainTitleFont,
+                      ),
+                      Row(
+                        children: [
+                          SvgPicture.asset(nasehBadge),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text("ناصح",
+                              style:
+                                  Constants.secondaryTitleRegularFont.copyWith(
+                                color: Constants.primaryAppColor,
+                              ))
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                myListile(
+                  iconn: ta3delProfile,
+                  namee: "طلباتي",
+                  // onTapHandler:
+                  //     MyApplication.showToastView(message: "sjhsk")
+                ),
+                myListile(
+                    iconn: mahfazty,
+                    namee: "محفظتي",
+                    onTapHandler: () =>
+                        MyApplication.showToastView(message: "sjns")),
+                myListile(iconn: mahfazty, namee: "الأشعارات"),
+                myListile(iconn: shorot, namee: "الإعدادات"),
+                myListile(iconn: shorot, namee: 'الشروط والأحكام'),
+                myListile(iconn: shorot, namee: 'الدعم الفني'),
+                myListile(iconn: shorot, namee: 'تعرف علي تطبيق نصوح'),
+                myListile(iconn: logOut, namee: 'تسجيل الخروج'),
+                const Padding(
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 50),
+                  child: Text(
+                    "رقم الأصدار 1.0.0.1",
+                    style: Constants.subtitleFont,
+                  ),
+                )
+              ],
+            ),
+          ),
           body: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -124,9 +205,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       appbarButton(
                           myIcon: const Icon(
-                        Icons.menu,
-                        color: Colors.white,
-                      )),
+                            Icons.menu,
+                            color: Colors.white,
+                          ),
+                          onTapHandler: () {
+                            _scaffoldKey.currentState!.openDrawer();
+                            if (_scaffoldKey.currentState!.isDrawerOpen) {
+                              // Check if the drawer is open
+                              _focusNode.unfocus(); // Unfocus the text field
+                            }
+                          }),
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,6 +251,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         TextField(
+                          controller: _textController,
+                          focusNode: _focusNode,
                           decoration:
                               Constants.setRegistrationTextInputDecoration(
                             prefixIcon: SvgPicture.asset(searchIcon),
@@ -276,7 +366,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Expanded(
                             child: ListView.builder(
                           shrinkWrap: true,
-                          itemBuilder: (context, index) => Advicess(),
+                          itemBuilder: (context, index) => const Advicess(),
                           itemCount: 4,
                         ))
                       ],
@@ -287,5 +377,23 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           )),
     );
+  }
+
+  ListTile myListile(
+      {required String iconn,
+      required String namee,
+      Function()? onTapHandler}) {
+    return ListTile(
+        minLeadingWidth: 10,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 24,
+        ),
+        leading: SvgPicture.asset(iconn, color: const Color(0XFF5C5E6B)),
+        title: Text(
+          namee,
+          style: Constants.secondaryTitleRegularFont
+              .copyWith(color: const Color(0XFF5C5E6B)),
+        ),
+        onTap: onTapHandler);
   }
 }

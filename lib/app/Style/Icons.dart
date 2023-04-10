@@ -41,6 +41,11 @@ const String faceBookIcon = "assets/images/SVGs/faceBookIcon.svg";
 const String youtubeIcon = "assets/images/SVGs/youtubeIcon.svg";
 const String nasehaCost = "assets/images/SVGs/nasehaCost.svg";
 const String onboardingImage = "assets/images/SVGs/OnboardingImage.svg";
+const String nasehBadge = "assets/images/SVGs/nasehBadge.svg";
+const String ta3delProfile = "assets/images/SVGs/ta3del.svg";
+const String mahfazty = "assets/images/SVGs/mahfazty.svg";
+const String shorot = "assets/images/SVGs/shorot.svg";
+const String logOut = "assets/images/SVGs/logOut.svg";
 // const String appbarLogo = "assets/images/SVGs/appbarLogo.svg";
 
 ///////////////////// Jsons////////
